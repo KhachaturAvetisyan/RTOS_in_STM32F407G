@@ -19,6 +19,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "main.h"
+#include "led.h"
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -60,6 +61,8 @@ int main(void)
 	task_handlers[2] = (uint32_t)task3_handler;
 	task_handlers[3] = (uint32_t)task4_handler;
 
+	led_init_all();
+
 	init_tasks_stack();
 
 	init_systick_timer(TICK_HZ);
@@ -76,7 +79,12 @@ void task1_handler(void)
 {
 	while(1)
 	{
-		printf("This is a Task1!!\n");
+//		printf("This is a Task1!!\n");
+
+		led_on(LED_GREEN);
+		delay(DELAY_COUNT_1S);
+		led_off(LED_GREEN);
+		delay(DELAY_COUNT_1S);
 	}
 }
 
@@ -84,7 +92,12 @@ void task2_handler(void)
 {
 	while(1)
 	{
-		printf("This is a Task2!!\n");
+//		printf("This is a Task2!!\n");
+
+		led_on(LED_ORANGE);
+		delay(DELAY_COUNT_500MS);
+		led_off(LED_ORANGE);
+		delay(DELAY_COUNT_500MS);
 	}
 }
 
@@ -92,7 +105,12 @@ void task3_handler(void)
 {
 	while(1)
 	{
-		printf("This is a Task3!!\n");
+//		printf("This is a Task3!!\n");
+
+		led_on(LED_RED);
+		delay(DELAY_COUNT_250MS);
+		led_off(LED_RED);
+		delay(DELAY_COUNT_250MS);
 	}
 }
 
@@ -100,7 +118,12 @@ void task4_handler(void)
 {
 	while(1)
 	{
-		printf("This is a Task4!!\n");
+//		printf("This is a Task4!!\n");
+
+		led_on(LED_BLUE);
+		delay(DELAY_COUNT_125MS);
+		led_off(LED_BLUE);
+		delay(DELAY_COUNT_125MS);
 	}
 }
 
